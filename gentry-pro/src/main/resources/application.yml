@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1/gentry?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    hikari:
+      max-lifetime: 500000
+  application:
+    name: pro-server
+  main:
+    allow-bean-definition-overriding: true
+server:
+  port: 7002
+  servlet:
+    context-path: /pro
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5060/eureka/eureka
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tb_
