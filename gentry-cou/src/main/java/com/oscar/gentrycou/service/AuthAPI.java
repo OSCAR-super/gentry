@@ -2,7 +2,7 @@ package com.oscar.gentrycou.service;
 
 import com.oscar.gentrycou.utils.RestResult;
 
-public interface AuthService {
+public interface AuthAPI {
 
     RestResult userWxLogin(String code);
 

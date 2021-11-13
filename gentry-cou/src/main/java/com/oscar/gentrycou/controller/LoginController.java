@@ -1,15 +1,11 @@
 package com.oscar.gentrycou.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.oscar.gentrycou.service.AuthService;
+import com.oscar.gentrycou.service.AuthAPI;
 import com.oscar.gentrycou.utils.AuthUtils;
 import com.oscar.gentrycou.utils.JwtTokenUtils;
-import com.oscar.gentrycou.utils.RestResult;
-import com.oscar.gentrycou.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class LoginController {
     @Autowired
-    private AuthService authService;
+    private AuthAPI authService;
     @Autowired
     private JwtTokenUtils jwtTokenUtils;
     @Autowired

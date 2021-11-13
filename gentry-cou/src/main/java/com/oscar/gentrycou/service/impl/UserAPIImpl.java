@@ -2,7 +2,7 @@ package com.oscar.gentrycou.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.oscar.gentrycou.feign.AuthFeignService;
-import com.oscar.gentrycou.service.UserService;
+import com.oscar.gentrycou.service.UserAPI;
 import com.oscar.gentrycou.utils.RestResult;
 import com.oscar.gentrycou.utils.ResultUtils;
 import com.oscar.gentryentity.entity.UserEntity;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.UUID;
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class UserAPIImpl implements UserAPI {
     @Autowired
     private AuthFeignService authFeignService;
     @Resource

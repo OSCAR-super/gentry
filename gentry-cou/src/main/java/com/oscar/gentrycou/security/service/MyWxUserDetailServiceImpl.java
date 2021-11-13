@@ -1,6 +1,6 @@
 package com.oscar.gentrycou.security.service;
 
-import com.oscar.gentrycou.service.UserService;
+import com.oscar.gentrycou.service.UserAPI;
 import com.oscar.gentrycou.utils.WxUtils;
 import com.oscar.gentryentity.entity.MyUserDetails;
 import com.oscar.gentryentity.entity.UserEntity;
@@ -23,7 +23,7 @@ public class MyWxUserDetailServiceImpl implements UserDetailsService {
     private WxUtils wxUtils;
 
     @Autowired
-    private UserService userService;
+    private UserAPI userService;
 
 
     @Override

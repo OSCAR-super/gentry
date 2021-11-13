@@ -6,7 +6,7 @@ import com.oscar.gentrycou.security.config.WxLoginAuthenticationToken;
 import com.oscar.gentrycou.utils.JwtTokenUtils;
 import com.oscar.gentrycou.utils.RestResult;
 import com.oscar.gentryentity.entity.MyUserDetails;
-import com.oscar.gentrycou.service.AuthService;
+import com.oscar.gentrycou.service.AuthAPI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 
 @Service
 @Slf4j
-public class AuthServiceImpl implements AuthService {
+public class AuthAPIImpl implements AuthAPI {
 
     @Resource
     private AuthenticationManager authenticationManager;
