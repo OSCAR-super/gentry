@@ -26,6 +26,11 @@ public class LoginController {
     public String test(String test) {
         return authService.test(test);
     }
+
+    @PostMapping("/lets")
+    public String lets(){
+        return "123";
+    }
     /*
     wx小程序登入接口
      */
