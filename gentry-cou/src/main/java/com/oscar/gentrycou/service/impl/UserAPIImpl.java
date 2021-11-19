@@ -2,6 +2,7 @@ package com.oscar.gentrycou.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.oscar.gentrycou.feign.AuthFeignService;
+import com.oscar.gentrycou.feign.UserFeignService;
 import com.oscar.gentrycou.service.UserAPI;
 import com.oscar.gentrycou.utils.RestResult;
 import com.oscar.gentrycou.utils.ResultUtils;
@@ -22,27 +23,24 @@ import java.util.UUID;
 public class UserAPIImpl implements UserAPI {
     @Autowired
     private AuthFeignService authFeignService;
+    @Autowired
+    private UserFeignService userFeignService;
     @Resource
     private RedisTemplate<Object,Object> redisTemplate;
 
     @Override
     public void insertUser(UserEntity userEntity) {
-        authFeignService.insert(userEntity);
+        userFeignService.insertUser(userEntity);
     }
 
     @Override
     public UserEntity findUserByOpenId(String openId) {
-        QueryWrapper<UserEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq("open_id",openId);
-
-        return authFeignService.selectOne(wrapper);
+        return userFeignService.findUserByOpenId(openId);
     }
 
     @Override
     public List<UserRoleEntity> findUserRolesByOpenId(String openId) {
-        QueryWrapper<UserRoleEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq("open_id",openId);
-        return authFeignService.selectList(wrapper);
+        return userFeignService.findUserRolesByOpenId(openId);
     }
 
     public RestResult doneLoad(MultipartFile file) {
@@ -110,7 +108,7 @@ public class UserAPIImpl implements UserAPI {
 
     @Override
     public void setInitRole(UserRoleEntity user) {
-        authFeignService.insert(user);
+        userFeignService.setInitRole(user);
     }
 
 }

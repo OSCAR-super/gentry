@@ -1,8 +1,11 @@
 package com.oscar.gentrycou.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.oscar.gentrycou.service.AuthAPI;
 import com.oscar.gentrycou.utils.AuthUtils;
 import com.oscar.gentrycou.utils.JwtTokenUtils;
+import com.oscar.gentrycou.utils.RestResult;
+import com.oscar.gentrycou.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,18 +38,18 @@ public class LoginController {
     wx小程序登入接口
      */
 
-//    @PostMapping("/userWxLogin")
-//    public RestResult wxLogin(@RequestBody String json) {
-//        String code;
-//        try {
-//            code = (String) JSONObject.parseObject(json).get("code");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResultUtils.error("数据格式错误");
-//        }
-//
-//        return authService.userWxLogin(code);
-//    }
+    @PostMapping("/userWxLogin")
+    public RestResult wxLogin(@RequestBody String json) {
+        String code;
+        try {
+            code = (String) JSONObject.parseObject(json).get("code");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtils.error("数据格式错误");
+        }
+
+        return authService.userWxLogin(code);
+    }
 
     /*
     获取token 信息示例

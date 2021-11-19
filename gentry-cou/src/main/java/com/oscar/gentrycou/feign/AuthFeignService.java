@@ -25,7 +25,7 @@ public interface AuthFeignService {
     void insert(UserRoleEntity user);
 
     @RequestMapping(value = "2")
-    UserEntity selectOne(QueryWrapper<UserEntity> wrapper);
+    UserEntity selectOne(String openId);
 
     @RequestMapping(value = "3")
     List<UserRoleEntity> selectList(QueryWrapper<UserRoleEntity> wrapper);

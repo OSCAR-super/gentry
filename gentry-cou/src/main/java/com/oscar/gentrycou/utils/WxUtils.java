@@ -12,8 +12,8 @@ import java.util.Map;
 @Component
 public class WxUtils {
     public static final String WX_LOGIN_URL = "https://api.weixin.qq.com/sns/jscode2session";
-    public static final String WX_APPID ="wxea70c23239b0aa2f";
-    public static final String WX_SECRET = "19aa7daaa6fba74f1633f65b511ea7dc";
+    public static final String WX_APPID ="wxa21334fbd16c6991";
+    public static final String WX_SECRET = "1479ebf4e24a52bc69c110139edb25f4";
     public static final String WX_GRANT_TYPE = "authorization_code";
 
     public String getOpenIdByCode(String code) {

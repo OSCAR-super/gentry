@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MyWxUserDetailServiceImpl implements UserDetailsService {
@@ -32,8 +33,8 @@ public class MyWxUserDetailServiceImpl implements UserDetailsService {
 
 
         if (user==null){
-            userService.insertUser(new UserEntity("2",openId,0));
-            userService.setInitRole(new UserRoleEntity("2",openId,"user",0));
+            userService.insertUser(new UserEntity(UUID.randomUUID().toString(),openId,0));
+            userService.setInitRole(new UserRoleEntity(UUID.randomUUID().toString(),openId,"user",0));
         }
 
         List<UserRoleEntity> userRoleEntities = userService.findUserRolesByOpenId(openId);

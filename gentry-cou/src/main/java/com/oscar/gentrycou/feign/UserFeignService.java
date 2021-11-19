@@ -20,6 +20,6 @@ public interface UserFeignService {
     @RequestMapping(value = "setInitRole")
     void setInitRole(UserRoleEntity user);
 
-    @RequestMapping(value = "setInitRole")
+    @RequestMapping(value = "findUserRolesByOpenId")
     List<UserRoleEntity> findUserRolesByOpenId(String openId);
 }
