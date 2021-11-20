@@ -3,6 +3,7 @@ package com.oscar.gentrypro.controller;
 import com.oscar.gentryentity.entity.UserEntity;
 import com.oscar.gentryentity.entity.UserRoleEntity;
 import com.oscar.gentrypro.service.UserService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,11 +26,11 @@ public class UserController {
         return userRoleEntities;
     }
     @RequestMapping(value = "setInitRole")
-    public void setInitRole(UserRoleEntity userRoleEntity) {
+    public void setInitRole(@RequestBody UserRoleEntity userRoleEntity) {
         userService.setInitRole(userRoleEntity);
     }
     @RequestMapping(value = "insertUser")
-    public void insertUser(UserEntity userEntity) {
+    public void insertUser(@RequestBody UserEntity userEntity) {
         userService.insertUser(userEntity);
     }
 }
