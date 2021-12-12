@@ -120,7 +120,6 @@ public class JwtTokenUtils {
 
         String username = getAuthAccountFromToken(token);
 
-
         return (username.equals(userDetails.getUsername()) &&
                 !isTokenExpired(token) && checkRedisBlack(token));
     }

@@ -33,6 +33,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException {
         try {
             String token = request.getHeader(JwtTokenUtils.TOKEN_HEADER);
+            System.out.println("123"+token);
             if (token != null && token.length() > 0) {
 
                 String account = jwtTokenUtils.getAuthAccountFromToken(token);
@@ -43,7 +44,6 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
                     if ("user".equals(type)) {
                         userDetails = (MyUserDetails) userDetailService.loadUserByUsername(account);
                     }
-
                     //判断token是否有效 包括 新旧token redis黑名单
                     if (jwtTokenUtils.validateToken(token, userDetails)) {
                         //给使用该JWT令牌的用户进行授权

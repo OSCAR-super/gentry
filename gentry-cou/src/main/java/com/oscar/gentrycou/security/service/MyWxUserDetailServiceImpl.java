@@ -31,7 +31,6 @@ public class MyWxUserDetailServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String openId) throws UsernameNotFoundException {
         UserEntity user = userService.findUserByOpenId(openId);
 
-
         if (user==null){
             userService.insertUser(new UserEntity(UUID.randomUUID().toString(),openId,0));
             userService.setInitRole(new UserRoleEntity(UUID.randomUUID().toString(),openId,"user",0));

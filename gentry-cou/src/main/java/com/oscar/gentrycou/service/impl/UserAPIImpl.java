@@ -6,8 +6,13 @@ import com.oscar.gentrycou.feign.UserFeignService;
 import com.oscar.gentrycou.service.UserAPI;
 import com.oscar.gentrycou.utils.RestResult;
 import com.oscar.gentrycou.utils.ResultUtils;
+import com.oscar.gentryentity.dto.CrawlDTO;
+import com.oscar.gentryentity.dto.UserSearchDTO;
+import com.oscar.gentryentity.dto.UserSignDTO;
 import com.oscar.gentryentity.entity.UserEntity;
 import com.oscar.gentryentity.entity.UserRoleEntity;
+import com.oscar.gentryentity.entity.UserSearchEntity;
+import com.oscar.gentryentity.req.SearchWordReq;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -109,6 +114,31 @@ public class UserAPIImpl implements UserAPI {
     @Override
     public void setInitRole(UserRoleEntity user) {
         userFeignService.setInitRole(user);
+    }
+
+    @Override
+    public String setSign(UserSignDTO userSignDTO) {
+        return userFeignService.setSign(userSignDTO);
+    }
+
+    @Override
+    public List<CrawlDTO> searchUrl(SearchWordReq searchWordReq) {
+        return userFeignService.searchUrl(searchWordReq.getSearchWords());
+    }
+
+    @Override
+    public void addSearchWords(UserSearchDTO userSearchDTO) {
+        userFeignService.addSearchWords(userSearchDTO);
+    }
+
+    @Override
+    public List<UserSignDTO> getSignUrl(String account) {
+        return userFeignService.getSignUrl(account);
+    }
+
+    @Override
+    public List<UserSearchDTO> recommendUrl(String account) {
+        return userFeignService.recommendUrl(account);
     }
 
 }

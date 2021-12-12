@@ -5,26 +5,26 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="TestQuartz" class="com.oscar.quartz.quartz.TestQuartz"></bean>
-    <bean id="TestQuartzDetail"
+    <bean id="CrawlQuartz" class="com.oscar.quartz.quartz.CrawlQuartz"></bean>
+    <bean id="CrawlQuartzDetail"
           class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <!-- 指定任务类 -->
-        <property name="targetObject" ref="TestQuartz" />
+        <property name="targetObject" ref="CrawlQuartz" />
         <!-- 指定任务执行的方法 -->
         <property name="targetMethod" value="execute" />
     </bean>
-    <bean id="TestQuartzTrigger"
+    <bean id="CrawlQuartzTrigger"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="TestQuartzDetail" />
+        <property name="jobDetail" ref="CrawlQuartzDetail" />
         <!-- 每10秒运行一次 -->
-        <property name="cronExpression" value="0/10 * * * * ?" />
+        <property name="cronExpression" value="0 0 4 * * ?" />
     </bean>
 
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <!-- <ref bean="exampleJobTrigger" /> -->
-                <ref bean="TestQuartzTrigger" />
+                <ref bean="CrawlQuartzTrigger" />
             </list>
         </property>
     </bean>
