@@ -97,10 +97,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserSearchDTO> recommendUrl(String account) {
+    public List<UserSearchDTO> history(String account) {
         QueryWrapper<UserSearchEntity> wrapper = new QueryWrapper<>();
         wrapper.eq("open_id",account);
-        wrapper.last("ORDER BY RAND() limit 10");
         List<UserSearchEntity>userSearchEntities=userSearchMapper.selectList(wrapper);
         List<UserSearchDTO> userSearchDTOS = new ArrayList<>();
         for (UserSearchEntity userSearchEntity:userSearchEntities) {
@@ -109,5 +108,19 @@ public class UserServiceImpl implements UserService {
             userSearchDTOS.add(userSearchDTO);
         }
         return userSearchDTOS;
+    }
+
+    @Override
+    public List<CrawlDTO> recommendUrl() {
+        QueryWrapper<CrawlEntity> wrapper = new QueryWrapper<>();
+        wrapper.last("ORDER BY RAND() limit 18");
+        List<CrawlEntity>crawlEntities = crawlMapper.selectList(wrapper);
+        List<CrawlDTO>crawlDTOS = new ArrayList<>();
+        for (CrawlEntity crawlEntity:crawlEntities) {
+            CrawlDTO crawlDTO =new CrawlDTO();
+            BeanUtils.copyProperties(crawlEntity,crawlDTO);
+            crawlDTOS.add(crawlDTO);
+        }
+        return crawlDTOS;
     }
 }

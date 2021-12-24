@@ -137,8 +137,13 @@ public class UserAPIImpl implements UserAPI {
     }
 
     @Override
-    public List<UserSearchDTO> recommendUrl(String account) {
-        return userFeignService.recommendUrl(account);
+    public List<UserSearchDTO> history(String account) {
+        return userFeignService.history(account);
+    }
+
+    @Override
+    public List<CrawlDTO> recommendUrl() {
+        return userFeignService.recommendUrl();
     }
 
 }

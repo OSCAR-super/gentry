@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1/gentry?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://111.230.173.74/gentry?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
-    password: 123456
+    password: lytgjy1314
     hikari:
       max-lifetime: 500000
   application:
@@ -17,7 +17,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:5060/eureka/eureka
+      defaultZone: http://111.230.173.74:5060/eureka/eureka
 mybatis-plus:
   global-config:
     db-config:

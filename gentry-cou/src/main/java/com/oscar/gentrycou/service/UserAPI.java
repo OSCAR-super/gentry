@@ -29,5 +29,7 @@ public interface UserAPI {
 
     List<UserSignDTO> getSignUrl(String account);
 
-    List<UserSearchDTO> recommendUrl(String account);
+    List<UserSearchDTO> history(String account);
+
+    List<CrawlDTO> recommendUrl();
 }

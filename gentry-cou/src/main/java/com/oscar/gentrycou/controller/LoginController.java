@@ -2,16 +2,20 @@ package com.oscar.gentrycou.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.oscar.gentrycou.service.AuthAPI;
+import com.oscar.gentrycou.service.UserAPI;
 import com.oscar.gentrycou.utils.AuthUtils;
 import com.oscar.gentrycou.utils.JwtTokenUtils;
 import com.oscar.gentrycou.utils.RestResult;
 import com.oscar.gentrycou.utils.ResultUtils;
+import com.oscar.gentryentity.dto.CrawlDTO;
+import com.oscar.gentryentity.dto.UserSearchDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RequestMapping("/auth")
 @PreAuthorize("permitAll()")
@@ -24,6 +28,8 @@ public class LoginController {
     private JwtTokenUtils jwtTokenUtils;
     @Autowired
     private AuthUtils authUtils;
+    @Autowired
+    private UserAPI userService;
 
     @GetMapping("/test")
     public String test(String test) {
@@ -61,5 +67,11 @@ public class LoginController {
         log.info("当前登入用户为:{}", account);
         String test_account = authUtils.getContextUserDetails().getUsername();
         log.info("当前登入用户为:{}", test_account);
+    }
+
+    @PostMapping(value = "/recommendUrl")
+    public RestResult recommendUrl(){
+        List<CrawlDTO>crawlDTOS = userService.recommendUrl();
+        return ResultUtils.success(crawlDTOS);
     }
 }

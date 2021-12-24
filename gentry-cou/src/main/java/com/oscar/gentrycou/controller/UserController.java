@@ -8,6 +8,7 @@ import com.oscar.gentrycou.utils.ResultUtils;
 import com.oscar.gentryentity.dto.CrawlDTO;
 import com.oscar.gentryentity.dto.UserSearchDTO;
 import com.oscar.gentryentity.dto.UserSignDTO;
+import com.oscar.gentryentity.dto.UserSignShowDTO;
 import com.oscar.gentryentity.entity.UserSearchEntity;
 import com.oscar.gentryentity.req.SearchWordReq;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -52,13 +55,21 @@ public class UserController {
     public RestResult getSignUrl(){
         String account = authUtils.getContextUserDetails().getUsername();
         List<UserSignDTO> userSignDTOS = userService.getSignUrl(account);
-        return ResultUtils.success(userSignDTOS);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        List<UserSignShowDTO> userSignShowDTOS =new ArrayList<>();
+        for (UserSignDTO userSignDTO : userSignDTOS) {
+            UserSignShowDTO userSignShowDTO = new UserSignShowDTO();
+            userSignShowDTO.setId(userSignDTO.getId());
+            userSignShowDTO.setTime(formatter.format(userSignDTO.getTime()));
+            userSignShowDTOS.add(userSignShowDTO);
+        }
+        return ResultUtils.success(userSignShowDTOS);
     }
 
-    @PostMapping(value = "/recommendUrl")
-    public RestResult recommendUrl(){
+    @PostMapping(value = "/history")
+    public RestResult history(){
         String account = authUtils.getContextUserDetails().getUsername();
-        List<UserSearchDTO> userSearchDTOS = userService.recommendUrl(account);
+        List<UserSearchDTO> userSearchDTOS = userService.history(account);
         return ResultUtils.success(userSearchDTOS);
     }
 }

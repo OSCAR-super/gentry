@@ -61,8 +61,13 @@ public class UserController {
         return userService.getSignUrl(account);
     }
 
+    @RequestMapping(value = "history")
+    public List<UserSearchDTO> history(@RequestBody String account) {
+        return userService.history(account);
+    }
+
     @RequestMapping(value = "recommendUrl")
-    public List<UserSearchDTO> recommendUrl(@RequestBody String account) {
-        return userService.recommendUrl(account);
+    public List<CrawlDTO> recommendUrl() {
+        return userService.recommendUrl();
     }
 }
